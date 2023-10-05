@@ -3,8 +3,8 @@
 /**
  * main - Entry Point
  *
- * Description: A C Program That prints with pust functions
- * Return always 0 (success)
+ * Description: A C Program That prints with pust function
+ * Return always 0 (Success)
 */
 int main(void)
 {
