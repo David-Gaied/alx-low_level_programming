@@ -1,24 +1,37 @@
-include <stdio.h>
+#include "main.h"
+#include <stdio.h>
 /**
- * print_chessboard - prints the chessboard
- * @a: the board to print
+ * cap_string - capitalizes most of the words in a string.
+ * @s: analized string.
+ *
+ * Return: String with all words capitalized.
  */
-
-void print_chessboard(char (*a)[8])
+char *cap_string(char *s)
 {
 	int i, j;
+	int a[] = {32, 9, 10, 44, 59, 46, 33, 63, 34, 40, 41, 123, 125};
 
-	i = j = 0;
-	while (i < 8)
+	i = 0;
+	while (*(s + i) != '\0')
 	{
-		j = 0;
-		while (j < 8)
+		if (*(s + i) >= 'a' && *(s + i) <= 'z')
 		{
-			_putchar(a[i][j]);
-			j++;
+			if (i == 0)
+			{
+				*(s + i) = *(s + i) - 32;
+			}
+			else
+			{
+				for (j = 0; j <= 12; j++)
+				{
+					if (a[j] == *(s + i - 1))
+					{
+						*(s + i) = *(s + i) - 32;
+					}
+				}
+			}
 		}
-		_putchar('\n');
-		i++;
+	i++;
 	}
-
+	return (s);
 }
