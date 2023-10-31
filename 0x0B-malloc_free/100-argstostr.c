@@ -1,43 +1,50 @@
-#include <stdlib.h>
 #include "main.h"
-
+#include <stdlib.h>
 /**
-* **strtow - function that splits a string into words.
-* @str : pointer
-* Return: Char
-*/
-
-char **strtow(char *str)
+  *argstostr - concatenates all arguments of the program.
+  *@ac: argument count.
+  *@av: pointer to array of size ac.
+  *Return: NULL if ac == 0 or av == null, Pointer to new string.
+  *NULL on fail.
+  */
+char *argstostr(int ac, char **av)
 {
-	char **d;
-	int i;
-	int j = 0;
-	int con = 0;
+	int i, j, k, size;
+	char *arg;
 
-	if (str == NULL)
+	size = 0;
+	k = 0;
+	if (ac == 0 || av == NULL)
 		return (NULL);
-
-	for (i = 0 ; str[i] != '\0' ; i++)
+	i = 0;
+	while (i < ac)
 	{
-		if (str[i] != 32)
-			con++;
-	}
-
-	d = malloc(sizeof(char) * con);
-
-	if (d == NULL)
-		return (NULL);
-
-	for (i = 0 ; str[i] != '\0' ; i++)
-	{
-		if (str[i] != 32)
+		j = 0;
+		while (av[i][j])
 		{
-			*d[j] = str[i];
+			size++;
 			j++;
 		}
-		else
-		{
-		}
+		size++;
+		i++;
 	}
-	return (d);
+	arg = malloc((sizeof(char) * size) + 1);
+	if (arg == NULL)
+		return (NULL);
+	i = 0;
+	while (i < ac)
+	{
+		j = 0;
+		while (av[i][j])
+		{
+			arg[k] = av[i][j];
+			j++;
+			k++;
+		}
+		arg[k] = '\n';
+		k++;
+		i++;
+	}
+	arg[k] = '\0';
+	return (arg);
 }
