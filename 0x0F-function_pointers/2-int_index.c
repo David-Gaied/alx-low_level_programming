@@ -1,25 +1,17 @@
+#include <stddef.h>
 #include "main.h"
-
 /**
- * int_index - Function that searches for an integer
- * @array: array of integers
- * @size: size of array
- * @cmp: function pointer
- * Return: index of first element that matches with `cmp`, or -1 if none found
+ * array_iterator - Execute a function over array elements.
+ * @array: array to iterate.
+ * @size: array size.
+ * @action: function to execute.
+ *
  */
-
-int int_index(int *array, int size, int (*cmp)(int))
+void array_iterator(int *array, size_t size, void (*action)(int))
 {
 	int i;
 
-	if (size < 1 || array == NULL || cmp == NULL)
-		return (-1);
-
-	for (i = 0; i < size; i++)
-	{
-		if (cmp(array[i]))
-			return (i);
-	}
-
-	return (-1);
+	if (array && action)
+		for (i = 0; i < (int)size; i++)
+			action(array[i]);
 }
